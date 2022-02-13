@@ -1,0 +1,20 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+# reading the data in excel format to dataframe
+data = pd.read_excel(r"D:\sam\Book1.xlsx")
+
+# Assigning the months,range occrance and 
+# frequency occurance columns to x,y1 ,y2,respectively
+x = data["MONTHS"]
+y1 = data["range occurance"]
+y2 = data["Frequency occurance"]
+
+data['difference'] = y1-y2
+plt.rcParams['figure.figsize'] =(30,20)
+# plt.rcParams['font.weight'] = 20
+plt.rcParams['font.size'] = 22
+plt.plot(x,data['difference'])
+plt.savefig("difference.jpeg", dpi=500)
+
+plt.show()

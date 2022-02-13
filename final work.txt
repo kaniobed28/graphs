@@ -1,0 +1,57 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+# reading the data in excel format to dataframe
+data = pd.read_excel("Book1.xlsx")
+# Assigning the months,range occrance and 
+# frequency occurance columns to x,y1 ,y2,respectively
+x = data["MONTHS"]
+y1 = data["range occurance"]
+y2 = data["Frequency occurance"]
+
+# Plotting the graph
+fig, axs = plt.subplots(2, 1, figsize=(25, 20))
+fig.suptitle("Occurrence rate for Range spread-F(top panel in black), and Frequency spread-F (bottom panel in red) of Belem 2018",
+            fontsize = 26)# this line of code assign title to the graph
+# these lines of code plot the graph and label it RSF and FSF respectively
+axs[0].bar(x,y1,color="black",label="RSF")
+axs[1].bar(x,y2,color="red",label="FSF")
+# these lines of code range(limit) on Y-axis from 0 - 100
+axs[0].set_ylim([0,100])
+axs[1].set_ylim([0,100])
+# these lines of codes set ticks on y-axis with interval of 10
+axs[0].set_yticks(np.arange(0,101,10))
+axs[1].set_yticks(np.arange(0,101,10))
+# these lines of codes set label to the y-axis
+axs[0].set_ylabel("% Occurance ", size=26, weight ='bold')
+axs[1].set_ylabel("% Occurance ", size=26, weight ='bold')
+# these lines of codes setted legends to the two subplots
+axs[0].legend(fontsize = 20)
+axs[1].legend(fontsize = 20)
+# these lines of codes setted ticks around the graph
+axs[0].tick_params(direction = "out")
+sright1 = axs[0].secondary_yaxis("right")
+sright1.tick_params(labelright = False)
+stop1 = axs[0].secondary_xaxis("top")
+stop1.tick_params(labeltop = False)
+axs[1].tick_params(direction = "out")
+sright2 = axs[1].secondary_yaxis("right")
+sright2.tick_params(labelright = False)
+stop2 = axs[1].secondary_xaxis("top")
+stop2.tick_params(labeltop = False)
+# these lines of codes is responsible for increasing the fontsize of the labels
+axs[0].set_yticklabels(np.arange(0,101,10),fontsize= 26)
+axs[1].set_yticklabels(np.arange(0,101,10),fontsize= 26)
+axs[1].set_xticklabels(data["MONTHS"],fontsize= 21)
+
+# these lines of codes is responsible for the value of the occurance of each month
+for i in range(len(x)):
+    axs[0].text(i,y1[i],y1[i],ha ="center",va ="bottom",fontsize = 20)
+    axs[1].text(i,y2[i],y2[i],ha ="center",va ="bottom",fontsize = 20)
+
+axs[0].tick_params(labelbottom = False)
+
+fig.text(0.5, 0.04, 'MONTH', ha='center',size = 27 ,weight = 'bold') # this line of codes setted the x-axis label.
+plt.savefig("dataplot.png", dpi=500)# this line of code is responsible for saving the graph as an image(png file).
+plt.show() # this line of codes showed the graph on the screen.
+

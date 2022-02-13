@@ -1,0 +1,20 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+# reading the data in excel format to dataframe
+data = pd.read_excel(r"D:\sam\Book1.xlsx")
+
+# Assigning the months,range occrance and 
+# frequency occurance columns to x,y1 ,y2,respectively
+x = data["MONTHS"]
+y1 = data["range occurance"]
+y2 = data["Frequency occurance"]
+
+plt.rcParams['figure.figsize'] =(36,10)
+plt.rcParams['font.size'] = 22
+plt.pie([y2.mean(),y1.mean()],colors=['red','black'])
+plt.legend([f"Average of Frequency occurance:{y2.mean().round(2)}",f"Average of range occurance:{y1.mean().round(2)}"],loc =1)
+
+
+plt.savefig("pie.jpeg", dpi=500)
+plt.show()
